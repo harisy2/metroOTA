@@ -42,7 +42,6 @@ Once you've edited the file, create a `secrets.h`:
     -   [Adafruit GFX](https://github.com/adafruit/Adafruit-GFX-Library)
     -   [ESP32-targz](https://github.com/taranais/ESP32-targz)
     -   nanopb (vendored in `lib/nanopb/`)
-    - 
 ## Future Plans
 
 -   Full GTFS-Realtime feed parsing (TripUpdate & VehiclePosition entities)
