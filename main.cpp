@@ -1,7 +1,3 @@
-/***********************
- * ESP32 + nanopb + GTFS-Realtime TripUpdates (protobuf, no gzip)
- * Streams entities & stop_time_update via callbacks (tiny RAM).
- ***********************/
 #include <Arduino.h>
 #include <WiFi.h>
 #include <HTTPClient.h>
@@ -32,7 +28,6 @@ extern "C"
 Adafruit_NeoPixel strip(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 struct TrainInfo;
 
-// IMPORTANT: rotate your real keys; don’t ship hardcoded secrets.
 static const char *API_TRIPUPDATES = TRIP_UPDATES_URL;
 static const char *API_STOPS = STOPS_URL;
 
@@ -594,20 +589,7 @@ static std::vector<TrainInfo> filter(std::vector<TrainInfo> a)
     }
     return woot;
 }
-// static String reformatLine(String s){
-//   int idx = s.indexOf("-");
-//   return "" + s.substring(0,idx) + " (" + dirMap[s.substring(idx+1)] + ")";
-// }
-// static std::vector<String> createLines(std::vector<TrainInfo> trains){
-//   std::vector<String> out;
-//   for (TrainInfo train : trains){
-//     if(train.curr != "NOSTN" && train.next != "END"){
-//       String final = "" + reformatLine(train.line) + " -> " + train.next + " From: " + train.curr + " | ETA: " + formatLocalHHMM(train.arrivalTime);
-//       out.emplace_back(final);
-//     }
-//   }
-//   return out;
-// }
+
 static void displayTask(TrainInfo *first, TrainInfo *second)
 {
     // always same line: first may be defined but second is not always defined
@@ -687,7 +669,6 @@ static void displayTask(TrainInfo *first, TrainInfo *second)
 
 std::vector<TrainInfo> t;
 
-// ======= Demo =======
 void setup()
 {
     strip.begin();
